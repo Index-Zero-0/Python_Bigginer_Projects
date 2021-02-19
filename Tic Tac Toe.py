@@ -3,28 +3,41 @@ import sys
 
 
 def computersTurn():
-    while True:
-        randomNum = random.randint(0, 8)
-        if board[randomNum] == " ":
-            board[randomNum] = "X"
-            showTheBoard()
-            checkIfAnyOneWon()
-            break
+    if not boardIsFull():
+        while True:
+            randomNum = random.randint(0, 8)
+            if board[randomNum] == " ":
+                board[randomNum] = "X"
+                showTheBoard()
+                checkIfAnyOneWon()
+                break
+        playerTurn()
 
-    playerTurn()
+    else:
+        print("\n\n\tNobody won!\n")
+        sys.exit(0)
 
 
 def playerTurn():
-    while True:
-        playerChoose = input("Now it is your turn, which place?")
-        validation = checkIfInputIsValid(playerChoose)
-        if validation:
-            checkIfAnyOneWon()
-            break
+    if not boardIsFull():
+        while True:
+            playerChoose = input("Now it is your turn, which place?")
+            validation = checkIfInputIsValid(playerChoose)
+            if validation:
+                checkIfAnyOneWon()
+                break
+        computersTurn()
+    else:
+        print("Nobody won!")
+        sys.exit(0)
 
-    computersTurn()
 
-
+def boardIsFull():
+    for i in range(len(board)):
+        if board[i] == " ":
+            return False
+    return True
+    
 def checkIfInputIsValid(playerInput):
     try:
         toIntegerPlayerChoose = int(playerInput)
