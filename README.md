@@ -1,7 +1,7 @@
 # Python_Bigginer_Projects
 
 
-2 ptyhon projects for begginer level:
+2 ptyhon projects for begginers:
   * Tic Tac Toe game
   * Word Counter app
   
