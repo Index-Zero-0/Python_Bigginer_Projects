@@ -33,8 +33,8 @@ def playerTurn():
 
 
 def boardIsFull():
-    for i in range(len(board)):
-        if board[i] == " ":
+    for item in board:
+        if item == " ":
             return False
     return True
     
