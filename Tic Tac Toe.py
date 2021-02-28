@@ -11,7 +11,7 @@ def computersTurn():
                 showTheBoard()
                 checkIfAnyOneWon()
                 break
-        playerTurn()
+        playersTurn()
 
     else:
         print("\n\n\tNobody won!\n")
