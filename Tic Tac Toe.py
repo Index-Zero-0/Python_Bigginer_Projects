@@ -18,14 +18,21 @@ def computersTurn():
         sys.exit(0)
 
 
-def playerTurn():
+def playersTurn():
     if not boardIsFull():
         while True:
             playerChoose = input("Now it is your turn, which place?")
             validation = checkIfInputIsValid(playerChoose)
             if validation:
-                checkIfAnyOneWon()
-                break
+                # Player will chose a number between 1 to 9 (obs: 9 is included)
+                # But the board list will start at zero that's why we subtract 1 from the Player's input.
+                if board[int(playerChoose) - 1] == " ":
+                    board[int(playerChoose) - 1] = "O"
+                    showTheBoard()
+                    checkIfAnyOneWon()
+                    break
+                else:
+                    print("This place is already filled!")
         computersTurn()
     else:
         print("Nobody won!")
@@ -40,15 +47,11 @@ def boardIsFull():
     
 def checkIfInputIsValid(playerInput):
     try:
-        toIntegerPlayerChoose = int(playerInput)
-        # Player will chose a number between 1 to 9 (obs: 9 is included)
-        # But the board list will start at zero that's why we subtract 1 from the Player's input.
-        if board[toIntegerPlayerChoose - 1] == " ":
-            board[toIntegerPlayerChoose - 1] = "O"
+        toIntegerPlayerChoice = int(playerInput)
+        if toIntegerPlayerChoice >= 0 and toIntegerPlayerChoice <= 9:
             return True
-
-        print("This place is already filled!")
-
+        else:
+            print("Box numbers are from 1 to 9")
     # If conversion from string to integer failed
     except ValueError:
         print("Invalid input")
